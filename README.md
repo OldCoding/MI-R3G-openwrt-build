@@ -1,1 +1,1 @@
-# MI-R3G-immortalwrt-build
+# MI-R3G-openwrt-build
