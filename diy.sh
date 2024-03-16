@@ -31,6 +31,7 @@ svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci
 svn_export "master" "applications/luci-app-webadmin" "feeds/luci/applications/luci-app-webadmin" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-autoreboot" "feeds/luci/applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci"
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
+svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 
 # turboacc 补丁
 git clone --depth=1 --single-branch --branch "package" https://github.com/chenmozhijin/turboacc "$TMPDIR/package" || exit 1
