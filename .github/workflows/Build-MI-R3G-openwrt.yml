@@ -166,6 +166,10 @@ jobs:
         # 常用软件包:
         cat >> .config <<EOF
         # CONFIG_PACKAGE_luci-app-unblockmusic is net set
+        CONFIG_PACKAGE_bind-host=y
+        CONFIG_PACKAGE_ddns-scripts_aliyun=y
+        CONFIG_PACKAGE_ddns-scripts-dnspod=y
+        CONFIG_PACKAGE_ddns-scripts-dnspod-com=y
         CONFIG_PACKAGE_default-settings-chn=y
         CONFIG_PACKAGE_iptables-mod-socket=y
         CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
