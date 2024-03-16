@@ -166,6 +166,7 @@ jobs:
         # 常用软件包:
         cat >> .config <<EOF
         # CONFIG_PACKAGE_luci-app-unblockmusic is net set
+        CONFIG_PACKAGE_default-settings-chn=y
         EOF
 
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
