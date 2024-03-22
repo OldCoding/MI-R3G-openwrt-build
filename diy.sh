@@ -25,7 +25,8 @@ git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/l
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
 git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
 git clone --depth 1 https://github.com/chenmozhijin/luci-app-adguardhome package/luci-app-adguardhome
-git clone --depth 1 https://github.com/sbwml/luci-app-daed-next package/daed-next
+svn_export "main" "luci-app-daed-next" "package/luci-app-daed-next" "https://github.com/sbwml/luci-app-daed-next"
+svn_export "main" "daed-next" "package/daed-next" "https://github.com/sbwml/luci-app-daed-next"
 svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
 svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/luci-app-zerotier" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci-app-vlmcsd" "https://github.com/immortalwrt/luci"
