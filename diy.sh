@@ -19,7 +19,6 @@ rm -rf feeds/packages/lang/golang
 
 git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
-curl -sfL https://github.com/breakings/OpenWrt/raw/main/general/netsupport.mk > package/kernel/linux/modules/netsupport.mk
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
