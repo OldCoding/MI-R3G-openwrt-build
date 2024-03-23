@@ -19,7 +19,9 @@ rm -rf feeds/packages/lang/golang
 
 git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
+curl -sfL https://github.com/breakings/OpenWrt/raw/main/general/netsupport.mk > package/kernel/linux/modules/netsupport.mk
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
+
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
@@ -37,28 +39,9 @@ svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_d
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 
-# turboacc 补丁
-git clone --depth=1 --single-branch --branch "package" https://github.com/chenmozhijin/turboacc "$TMPDIR/package" || exit 1
-git clone --depth=1 --single-branch https://github.com/fullcone-nat-nftables/nft-fullcone "$TMPDIR/turboacc/nft-fullcone" || exit 1
-git clone --depth=1 --single-branch https://github.com/chenmozhijin/turboacc "$TMPDIR/turboacc/turboacc" || exit 1
-cp -r "$TMPDIR/turboacc/turboacc/luci-app-turboacc" "$TMPDIR/turboacc/luci-app-turboacc"
-rm -rf "$TMPDIR/turboacc/turboacc"
-cp -r "$TMPDIR/package/shortcut-fe" "$TMPDIR/turboacc/shortcut-fe"
-cp -f "$TMPDIR/package/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch" "./target/linux/generic/hack-6.1/952-add-net-conntrack-events-support-multiple-registrant.patch"
-cp -f "$TMPDIR/package/hack-6.1/953-net-patch-linux-kernel-to-support-shortcut-fe.patch" "./target/linux/generic/hack-6.1/953-net-patch-linux-kernel-to-support-shortcut-fe.patch"
-cp -f "$TMPDIR/package/pending-6.1/613-netfilter_optional_tcp_window_check.patch" "./target/linux/generic/pending-6.1/613-netfilter_optional_tcp_window_check.patch"
 
-if ! grep -q "CONFIG_NF_CONNTRACK_CHAIN_EVENTS" "./target/linux/generic/config-6.1" ; then
-    echo "# CONFIG_NF_CONNTRACK_CHAIN_EVENTS is not set" >> "./target/linux/generic/config-6.1"
-fi
-if ! grep -q "CONFIG_SHORTCUT_FE" "./target/linux/generic/config-6.1" ; then
-    echo "# CONFIG_SHORTCUT_FE is not set" >> "./target/linux/generic/config-6.1"
-fi
-cp -r "$TMPDIR/turboacc" "./package/turboacc"
-rm -rf ./package/libs/libnftnl ./package/network/config/firewall4 ./package/network/utils/nftables
-cp -RT "$TMPDIR/package/firewall4-$(grep -o 'FIREWALL4_VERSION=.*' "$TMPDIR/package/version" | cut -d '=' -f 2)/firewall4" ./package/network/config/firewall4
-cp -RT "$TMPDIR/package/libnftnl-$(grep -o 'LIBNFTNL_VERSION=.*' "$TMPDIR/package/version" | cut -d '=' -f 2)/libnftnl" ./package/libs/libnftnl
-cp -RT "$TMPDIR/package/nftables-$(grep -o 'NFTABLES_VERSION=.*' "$TMPDIR/package/version" | cut -d '=' -f 2)/nftables" ./package/network/utils/nftables
+# turboacc 补丁
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -l
