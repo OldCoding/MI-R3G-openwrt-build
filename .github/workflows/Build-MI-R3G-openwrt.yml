@@ -46,7 +46,6 @@ jobs:
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL https://is.gd/depends_ubuntu_2204)
-        sudo -E apt -y install clang llvm lld
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo -E apt-get -qq install libfuse-dev
@@ -135,25 +134,11 @@ jobs:
         CONFIG_PACKAGE_ipv6helper=y
         EOF
 
-        # eBPF支持:
-        cat >> .config <<EOF
-        CONFIG_DEVEL=y
-        CONFIG_BPF_TOOLCHAIN_HOST=y
-        # CONFIG_BPF_TOOLCHAIN_NONE is not set
-        CONFIG_KERNEL_BPF_EVENTS=y
-        CONFIG_KERNEL_CGROUP_BPF=y
-        CONFIG_KERNEL_DEBUG_INFO=y
-        CONFIG_KERNEL_DEBUG_INFO_BTF=y
-        # CONFIG_KERNEL_DEBUG_INFO_REDUCED is not set
-        CONFIG_KERNEL_XDP_SOCKETS=y
-        EOF
-
         # LuCI插件选择:
         cat >> .config <<EOF
         CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-autoreboot=y
         CONFIG_PACKAGE_luci-app-ddns=y
-        CONFIG_PACKAGE_luci-app-dae=y
         CONFIG_PACKAGE_luci-app-nlbwmon=y
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
@@ -223,7 +208,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) CGO_ENABLED=0 GOARCH=mips || make -j1 || make -j1 V=s
+        make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> ${GITHUB_OUTPUT}
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
