@@ -15,19 +15,18 @@ svn_export() {
 trap 'rm -rf "$TMPDIR"' EXIT
 TMPDIR=$(mktemp -d) || exit 1
 
-rm -rf feeds/packages/lang/golang 
-
-git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+#rm -rf feeds/packages/lang/golang 
+#git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 #git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
-git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
+#git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
 git clone --depth 1 https://github.com/chenmozhijin/luci-app-adguardhome package/luci-app-adguardhome
-svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
-#svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/luci-app-zerotier" "https://github.com/immortalwrt/luci"
+#svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
+svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/luci-app-zerotier" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci-app-vlmcsd" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-webadmin" "feeds/luci/applications/luci-app-webadmin" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-autoreboot" "feeds/luci/applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci"
@@ -38,7 +37,7 @@ svn_export "master" "package/emortal" "package/emortal" "https://github.com/immo
 
 
 # turboacc 补丁
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -l
