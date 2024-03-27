@@ -150,6 +150,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-watchcat=y
         CONFIG_PACKAGE_luci-app-wol=y
         CONFIG_PACKAGE_luci-app-upnp=y
+        CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-zerotier=y
         CONFIG_PACKAGE_luci-app-turboacc=y
@@ -164,7 +165,6 @@ jobs:
 
         # 常用软件包:
         cat >> .config <<EOF
-        # CONFIG_PACKAGE_luci-app-unblockmusic is net set
         CONFIG_PACKAGE_bind-host=y
         CONFIG_PACKAGE_ddns-scripts_aliyun=y
         CONFIG_PACKAGE_ddns-scripts-dnspod=y
