@@ -226,6 +226,7 @@ jobs:
         tar -zcvf Packages.tar.gz ./*
         cp Packages.tar.gz $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
         cd $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        cp -f $GITHUB_WORKSPACE/openwrt/.config ./config
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> ${GITHUB_OUTPUT}
@@ -233,7 +234,6 @@ jobs:
 
     - name: Calculate MD5
       run: |
-        cp -f $GITHUB_WORKSPACE/openwrt/.config ${{ env.FIRMWARE }}
         cd ${{ env.FIRMWARE }} && rm -rf sha256sums
         MD5=$(md5sum * | sed ':a;N;$!ba;s/\n/<br>/g')
         echo "MD5=$MD5" >> $GITHUB_ENV
