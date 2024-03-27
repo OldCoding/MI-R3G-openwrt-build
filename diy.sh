@@ -34,11 +34,14 @@ svn_export "master" "net/ddns-scripts_aliyun" "feeds/packages/net/ddns-scripts_a
 svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_dnspod" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
-
+ls package/helloworld/
+ls package/openwrt-passwall-packages/
 rm -rf package/helloworld/shadowsocksr-libev
 rm -rf package/openwrt-passwall-packages/shadowsocksr-libev
 svn_export "master" "shadowsocksr-libev" "package/helloworld/shadowsocksr-libev" "https://github.com/sbwml/openwrt_helloworld"
 svn_export "master" "shadowsocksr-libev" "package/openwrt-passwall-packages/shadowsocksr-libev" "https://github.com/sbwml/openwrt_helloworld"
+ls package/helloworld/
+ls package/openwrt-passwall-packages/
 
 # turboacc 补丁
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
