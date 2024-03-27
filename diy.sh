@@ -30,14 +30,15 @@ svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/lu
 svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci-app-vlmcsd" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-webadmin" "feeds/luci/applications/luci-app-webadmin" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-autoreboot" "feeds/luci/applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci"
+svn_export "master" "applications/luci-app-unblockneteasemusic" "feeds/luci/applications/luci-app-unblockneteasemusic" "https://github.com/immortalwrt/luci"
 svn_export "master" "net/ddns-scripts_aliyun" "feeds/packages/net/ddns-scripts_aliyun" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_dnspod" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 
-#rm -rf package/helloworld/shadowsocksr-libev
-#rm -rf package/openwrt-passwall-packages/shadowsocksr-libev
-#svn_export "v5" "shadowsocksr-libev" "package/shadowsocksr-libev" "https://github.com/sbwml/openwrt_helloworld"
+rm -rf package/helloworld/shadowsocksr-libev
+rm -rf package/openwrt-passwall-packages/shadowsocksr-libev
+svn_export "v5" "shadowsocksr-libev" "package/shadowsocksr-libev" "https://github.com/sbwml/openwrt_helloworld"
 
 # turboacc 补丁
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
