@@ -23,7 +23,7 @@ curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
-#git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
+git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
 git clone --depth 1 https://github.com/chenmozhijin/luci-app-adguardhome package/luci-app-adguardhome
 svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
 svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/luci-app-zerotier" "https://github.com/immortalwrt/luci"
@@ -35,9 +35,12 @@ svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_d
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 
+rm -rf package/helloworld/shadowsocksr-libev
+rm -rf package/openwrt-passwall-packages/shadowsocksr-libev
+svn_export "master" "shadowsocksr-libev" "package/shadowsocksr-libev" "https://github.com/sbwml/openwrt_helloworld"
 
 # turboacc 补丁
-#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -l
