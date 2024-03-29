@@ -69,7 +69,7 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
+      run: cd openwrt && ./scripts/feeds update -a
 
     - name: File Diy Patch
       run: |
