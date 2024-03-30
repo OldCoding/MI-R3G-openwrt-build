@@ -12,9 +12,6 @@ svn_export() {
 	rm -rf "$TMP_DIR"
 }
 
-trap 'rm -rf "$TMPDIR"' EXIT
-TMPDIR=$(mktemp -d) || exit 1
-
 #rm -rf feeds/packages/lang/golang 
 #git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
