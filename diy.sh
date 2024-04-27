@@ -14,7 +14,7 @@ svn_export() {
 
 #rm -rf feeds/packages/lang/golang 
 #git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
-rm -rf target/linux/ramips
+
 # hwnat
 svn_export "master" "target/linux/ramips" "target/linux/ramips" "https://github.com/padavanonly/immortalwrt"
 
