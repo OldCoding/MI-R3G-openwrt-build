@@ -15,6 +15,10 @@ svn_export() {
 #rm -rf feeds/packages/lang/golang 
 #git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
+# hwnat
+curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts > /target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts
+curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/mt7621/base-files/etc/board.d/02_network > /target/linux/ramips/mt7621/base-files/etc/board.d/02_network
+
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
