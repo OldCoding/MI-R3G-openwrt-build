@@ -16,8 +16,7 @@ svn_export() {
 #git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # hwnat
-curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts > /target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts
-curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/mt7621/base-files/etc/board.d/02_network > /target/linux/ramips/mt7621/base-files/etc/board.d/02_network
+svn_export "master" "target/linux/ramips" "target/linux/ramips" "https://github.com/padavanonly/immortalwrt"
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
