@@ -35,8 +35,11 @@ svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_d
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 
+# hwnat
+curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts > /target/linux/ramips/dts/mt7621_xiaomi_mi-router-3g.dts
+curl -sfL https://github.com/padavanonly/openwrt/raw/master/target/linux/ramips/mt7621/base-files/etc/board.d/02_network > /target/linux/ramips/mt7621/base-files/etc/board.d/02_network
 # turboacc 补丁
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -l
