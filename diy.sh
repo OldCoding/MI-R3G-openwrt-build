@@ -36,7 +36,7 @@ svn_export "master" "package/emortal" "package/emortal" "https://github.com/immo
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
-./scripts/feeds update -l
+./scripts/feeds update -i
 ./scripts/feeds install -a
 
 # 调整菜单位置
