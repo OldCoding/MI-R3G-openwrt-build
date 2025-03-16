@@ -14,6 +14,9 @@ svn_export() {
 
 #rm -rf feeds/packages/lang/golang 
 #git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+rm -rf ./feeds/packages/net/smartdns
+rm -rf ./feeds/packages/net/xray-core
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
