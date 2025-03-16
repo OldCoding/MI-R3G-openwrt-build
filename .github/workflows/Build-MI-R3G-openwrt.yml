@@ -153,7 +153,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-vlmcsd=y
         CONFIG_PACKAGE_luci-app-zerotier=y
         CONFIG_PACKAGE_luci-app-turboacc=y
-        CONFIG_PACKAGE_luci-app-sqm=y
+        CONFIG_PACKAGE_luci-app-qosmate=y
         EOF
 
         # LuCI主题:
