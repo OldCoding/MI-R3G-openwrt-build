@@ -12,8 +12,8 @@ svn_export() {
 	rm -rf "$TMP_DIR"
 }
 
-#rm -rf feeds/packages/lang/golang 
-#git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+rm -rf feeds/packages/lang/golang 
+git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/packages/net/smartdns
 rm -rf ./feeds/packages/net/xray-core
