@@ -69,4 +69,4 @@ curl -sfL -o ./luci-app-passwall/root/usr/share/passwall/rules/gfwlist https://r
 # AdguardHome核心
 cd ./luci-app-adguardhome/root/usr
 mkdir -p ./bin && tar -zxf /tmp/*.tar.gz -C ./bin
-chmod +x /bin/AdGuardHome/AdGuardHome
+chmod +x ./bin/AdGuardHome/AdGuardHome
