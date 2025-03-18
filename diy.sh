@@ -11,18 +11,19 @@ svn_export() {
 	cp -af . "$TGT_DIR/" && cd "$ORI_DIR"
 	rm -rf "$TMP_DIR"
 }
-
-rm -rf feeds/packages/lang/golang 
+rm -rf feeds/packages/lang/golang
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
+ 
 git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/packages/net/smartdns
-rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/zerotier
 rm -rf ./feeds/luci/applications/luci-app-alist
 rm -rf ./feeds/packages/net/alist
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 #git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
