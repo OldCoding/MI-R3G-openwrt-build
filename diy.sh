@@ -67,6 +67,8 @@ chmod +x ./convert_translation.sh && bash ./convert_translation.sh
 curl -sfL -o ./luci-app-passwall/root/usr/share/passwall/rules/gfwlist https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt
 
 # AdguardHome核心
+ADG_VER=$(curl -sfL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases 2>/dev/null | grep 'tag_name' | egrep -o "v[0-9].+[0-9.]" | awk 'NR==1')
+curl -sfL -o /tmp/AdGuardHome_linux.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/${ADG_VER}/AdGuardHome_linux_mipsle_softfloat.tar.gz
 cd ./luci-app-adguardhome/root/usr
 mkdir -p ./bin && tar -zxf /tmp/*.tar.gz -C ./bin
-ls && chmod +x ./bin/AdGuardHome/AdGuardHome
+chmod +x ./bin/AdGuardHome/AdGuardHome
