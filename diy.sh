@@ -12,8 +12,9 @@ svn_export() {
 	rm -rf "$TMP_DIR"
 }
 rm -rf feeds/packages/lang/golang
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
- 
+find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+find ./ | grep Makefile | grep mosdns | xargs rm -f
+
 git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 rm -rf ./feeds/luci/applications/luci-app-smartdns
 rm -rf ./feeds/packages/net/smartdns
@@ -23,15 +24,15 @@ rm -rf ./feeds/packages/net/alist
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
 
-git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
+#git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-#git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
-#git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
+git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall-packages
+git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
 git clone --depth 1 https://github.com/chenmozhijin/luci-app-adguardhome package/luci-app-adguardhome
 git clone --depth 1 https://github.com/hudra0/luci-app-qosmate package/luci-app-qosmate
 git clone --depth 1 https://github.com/hudra0/qosmate package/qosmate
-#svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
+svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/xiaorouji/openwrt-passwall"
 svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/luci-app-zerotier" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci-app-vlmcsd" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-webadmin" "feeds/luci/applications/luci-app-webadmin" "https://github.com/immortalwrt/luci"
