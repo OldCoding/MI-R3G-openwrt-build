@@ -15,13 +15,13 @@ svn_export() {
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-rm -rf ./feeds/packages/lang/golang
+#rm -rf ./feeds/packages/lang/golang
 rm -rf ./feeds/packages/net/zerotier
 rm -rf ./feeds/luci/applications/luci-app-alist
 #rm -rf ./feeds/packages/net/alist
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
-git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+#git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 #git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
