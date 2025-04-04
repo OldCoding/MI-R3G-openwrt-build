@@ -44,6 +44,9 @@ svn_export "master" "net/zerotier" "feeds/packages/net/zerotier" "https://github
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 svn_export "main" "luci-app-alist" "feeds/luci/applications/luci-app-alist" "https://github.com/sbwml/luci-app-alist"
 svn_export "main" "alist" "feeds/packages/net/alist" "https://github.com/sbwml/luci-app-alist"
+svn_export "v5" "luci-app-mosdns" "package/luci-app-mosdns" "https://github.com/sbwml/luci-app-mosdns"
+svn_export "v5" "mosdns" "package/mosdns" "https://github.com/sbwml/luci-app-mosdns"
+svn_export "v5" "v2dat" "package/v2dat" "https://github.com/sbwml/luci-app-mosdns"
 
 # fix shadowsocks-rust for mipsel
 rm -rf package/openwrt-passwall-packages/shadowsocks-rust
