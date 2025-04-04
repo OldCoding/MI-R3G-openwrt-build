@@ -142,6 +142,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-autoreboot=y
         CONFIG_PACKAGE_luci-app-ddns=y
+        CONFIG_PACKAGE_luci-app-diskman=y
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
@@ -150,6 +151,7 @@ jobs:
         # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client is not set
         # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
         CONFIG_PACKAGE_luci-app-smartdns=y
+        CONFIG_PACKAGE_luci-app-turboacc=y
         CONFIG_PACKAGE_luci-app-ttyd=y
         CONFIG_PACKAGE_luci-app-passwall=y
         CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
@@ -172,6 +174,8 @@ jobs:
 
         # 常用软件包:
         cat >> .config <<EOF
+        CONFIG_PACKAGE_automount=y
+        CONFIG_PACKAGE_autosamba=y
         CONFIG_PACKAGE_bind-host=y
         CONFIG_PACKAGE_ddns-scripts_aliyun=y
         CONFIG_PACKAGE_ddns-scripts-dnspod=y

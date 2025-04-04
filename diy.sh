@@ -15,13 +15,13 @@ svn_export() {
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-#rm -rf ./feeds/packages/lang/golang
+rm -rf ./feeds/packages/lang/golang 
+git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 rm -rf ./feeds/packages/net/zerotier
 rm -rf ./feeds/luci/applications/luci-app-alist
-#rm -rf ./feeds/packages/net/alist
+rm -rf ./feeds/packages/net/alist
 
 curl -sfL https://github.com/immortalwrt/luci/raw/master/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json > feeds/luci/modules/luci-base/root/usr/share/luci/menu.d/luci-base.json
-#git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 #git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
@@ -36,13 +36,18 @@ svn_export "master" "applications/luci-app-zerotier" "feeds/luci/applications/lu
 svn_export "master" "applications/luci-app-vlmcsd" "feeds/luci/applications/luci-app-vlmcsd" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-webadmin" "feeds/luci/applications/luci-app-webadmin" "https://github.com/immortalwrt/luci"
 svn_export "master" "applications/luci-app-autoreboot" "feeds/luci/applications/luci-app-autoreboot" "https://github.com/immortalwrt/luci"
+svn_export "master" "applications/luci-app-diskman" "feeds/luci/applications/luci-app-diskman" "https://github.com/immortalwrt/luci"
 svn_export "master" "net/ddns-scripts_aliyun" "feeds/packages/net/ddns-scripts_aliyun" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/ddns-scripts_dnspod" "feeds/packages/net/ddns-scripts_dnspod" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/vlmcsd" "feeds/packages/net/vlmcsd" "https://github.com/immortalwrt/packages"
 svn_export "master" "net/zerotier" "feeds/packages/net/zerotier" "https://github.com/immortalwrt/packages"
 svn_export "master" "package/emortal" "package/emortal" "https://github.com/immortalwrt/immortalwrt"
 svn_export "main" "luci-app-alist" "feeds/luci/applications/luci-app-alist" "https://github.com/sbwml/luci-app-alist"
-#svn_export "main" "alist" "feeds/packages/net/alist" "https://github.com/sbwml/luci-app-alist"
+svn_export "main" "alist" "feeds/packages/net/alist" "https://github.com/sbwml/luci-app-alist"
+
+# fix shadowsocks-rust for mipsel
+rm -rf package/openwrt-passwall-packages/shadowsocks-rust
+curl -sfL https://github.com/sbwml/openwrt_helloworld/raw/refs/heads/v5/shadowsocks-rust/Makefile > package/helloworld/shadowsocks-rust/Makefile
 
 # turboacc 补丁
 curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
@@ -60,6 +65,10 @@ sed -i "s/PKG_VERSION:=.*/$VER/g" package/luci-app-adguardhome/Makefile
 # 个性化设置
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 sed -i 's/OpenWrt/MI-R3G/' package/base-files/files/bin/config_generate
+sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ Wing build $(TZ=UTC-8 date "+%Y.%m.%d")')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
+sed -i "s/key='.*'/key=123456789/g" ./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
+sed -i "s/country='.*'/country='CN'/g" ./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
+sed -i "s/encryption='.*'/encryption='sae-mixed'/g" ./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 # 汉化
 cd package
 curl -sfL -o ./convert_translation.sh https://github.com/kenzok8/small-package/raw/main/.github/diy/convert_translation.sh
@@ -68,8 +77,13 @@ chmod +x ./convert_translation.sh && bash ./convert_translation.sh
 curl -sfL -o ./luci-app-passwall/root/usr/share/passwall/rules/gfwlist https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt
 
 # AdguardHome核心
-ADG_VER=$(curl -sfL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases 2>/dev/null | grep 'tag_name' | egrep -o "v[0-9].+[0-9.]" | awk 'NR==1')
-curl -sfL -o /tmp/AdGuardHome_linux.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/${ADG_VER}/AdGuardHome_linux_mipsle_softfloat.tar.gz
 cd ./luci-app-adguardhome/root/usr
-mkdir -p ./bin && tar -zxf /tmp/*.tar.gz -C ./bin
-chmod +x ./bin/AdGuardHome/AdGuardHome
+mkdir -p ./bin/AdGuardHome && cd ./bin/AdGuardHome
+ADG_VER=$(curl -sfL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest 2>/dev/null | grep 'tag_name' | egrep -o "v[0-9].+[0-9.]" | awk 'NR==1')
+curl -sfL -o /tmp/AdGuardHome_linux.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/${ADG_VER}/AdGuardHome_linux_mipsle_softfloat.tar.gz
+tar -zxf /tmp/*.tar.gz -C /tmp/ && chmod +x /tmp/AdGuardHome/AdGuardHome
+#upx_latest_ver="$(curl -sfL https://api.github.com/repos/upx/upx/releases/latest 2>/dev/null | egrep 'tag_name' | egrep '[0-9.]+' -o 2>/dev/null)"
+curl -sfL -o /tmp/upx-4.2.4-amd64_linux.tar.xz "https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-amd64_linux.tar.xz"
+xz -d -c /tmp/upx-4.2.4-amd64_linux.tar.xz | tar -x -C "/tmp"
+/tmp/upx-4.2.4-amd64_linux/upx --ultra-brute /tmp/AdGuardHome/AdGuardHome > /dev/null 2>&1
+mv /tmp/AdGuardHome/AdGuardHome ./ && rm -rf /tmp/AdGuardHome
