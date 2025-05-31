@@ -47,6 +47,8 @@ svn_export "main" "alist" "feeds/packages/net/alist" "https://github.com/sbwml/l
 svn_export "v5" "luci-app-mosdns" "package/luci-app-mosdns" "https://github.com/sbwml/luci-app-mosdns"
 svn_export "v5" "mosdns" "package/mosdns" "https://github.com/sbwml/luci-app-mosdns"
 svn_export "v5" "v2dat" "package/v2dat" "https://github.com/sbwml/luci-app-mosdns"
+svn_export "main" "easytier" "package/easytier" "https://github.com/EasyTier/luci-app-easytier"
+svn_export "main" "luci-app-easytier" "package/luci-app-easytier" "https://github.com/EasyTier/luci-app-easytier"
 
 # fix shadowsocks-rust for mipsel
 rm -rf package/openwrt-passwall-packages/shadowsocks-rust
