@@ -23,7 +23,7 @@ on:
     
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: master
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -144,6 +144,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-diskman=y
         CONFIG_PACKAGE_easytier=y
         CONFIG_PACKAGE_luci-app-easytier=y
+        CONFIG_PACKAGE_luci-app-filebrowser=y
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-hd-idle=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
